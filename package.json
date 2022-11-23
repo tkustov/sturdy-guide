@@ -1,0 +1,19 @@
+{
+  "name": "@tkustov/core",
+  "version": "1.0.0",
+  "description": "Collection of TypeScript/JavaScript useful generic types",
+  "main": "lib/esm/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkustov/sturdy-guide.git"
+  },
+  "author": "Taras Kustov <tkusto@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tkustov/sturdy-guide/issues"
+  },
+  "homepage": "https://github.com/tkustov/sturdy-guide#readme"
+}
