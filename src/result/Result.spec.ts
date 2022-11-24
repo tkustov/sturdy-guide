@@ -1,4 +1,4 @@
-import { Result } from './Result';
+import { Result } from './Result.js';
 
 describe('Result', () => {
   describe('Base class', () => {

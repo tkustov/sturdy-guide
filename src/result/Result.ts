@@ -1,8 +1,4 @@
-class NoImplError extends Error {
-  constructor() {
-    super('there is no implementation');
-  }
-}
+import { NoImplError } from '../intrinsic/NoImplError.js';
 
 class MappingError extends Error {
   constructor(public exception?: any) {
@@ -23,43 +19,43 @@ export class Result<OkValue, ErrValue> {
 
   constructor() {
     if (this.constructor === Result) {
-      throw new NoImplError();
+      throw new Error('direct instantiating is forbidden');
     }
   }
 
   isOk(): boolean {
-    throw new NoImplError();
+    throw NoImplError.abstractMethod('isOk');
   }
 
   isErr(): boolean {
-    throw new NoImplError();
+    throw NoImplError.abstractMethod('isErr');
   }
 
   unwrap(): OkValue {
-    throw new NoImplError();
+    throw NoImplError.abstractMethod('unwrap');
   }
 
   unwrapErr(): ErrValue {
-    throw new NoImplError();
+    throw NoImplError.abstractMethod('unwrapErr');
   }
 
   unwrapOrElse<ElseValue>(elseValue: ElseValue): OkValue | ElseValue {
-    throw new NoImplError();
+    throw NoImplError.abstractMethod('unwrapOrElse');
   }
 
   map<MapValue>(mapFn: (value: OkValue) => MapValue): Result<MapValue, ErrValue | MappingError> {
-    throw new NoImplError();
+    throw NoImplError.abstractMethod('map');
   }
 
   mapErr<MapValue>(mapFn: (value: ErrValue) => MapValue): Result<MapValue, OkValue | MappingError> {
-    throw new NoImplError();
+    throw NoImplError.abstractMethod('mapErr');
   }
 
   mapOrElse<MapValue, ElseValue>(
     mapFn: (value: OkValue) => MapValue,
     elseValue: ElseValue
   ): MapValue | ElseValue {
-    throw new NoImplError();
+    throw NoImplError.abstractMethod('mapOrElse');
   }
 }
 
