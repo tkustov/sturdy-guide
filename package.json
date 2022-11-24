@@ -1,6 +1,6 @@
 {
   "name": "@tkustov/core",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "type": "module",
   "description": "Collection of TypeScript/JavaScript useful generic types",
   "main": "lib/esm/index.js",
