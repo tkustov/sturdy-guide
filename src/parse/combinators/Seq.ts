@@ -9,7 +9,7 @@ export function Seq(itemParsers: Parser[], checkEnd?: Parser): Parser {
       for (const parseItem of itemParsers) {
         const res = parseItem(input, lastIndex);
         if (res.isErr()) {
-          if (checkEnd && checkEnd(input, lastIndex)) {
+          if (checkEnd && checkEnd(input, lastIndex).isOk()) {
             break;
           }
           throw ParseError.seqNoMatch(res.unwrapErr(), index);
