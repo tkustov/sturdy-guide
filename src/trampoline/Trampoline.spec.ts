@@ -13,17 +13,11 @@ describe('trampoline', () => {
     let fibs: number[];
     function fib(n: number, sum: number = 0, prev: number = 1): number | TailCall<number> {
       fibs.push(sum);
-      return n <= 0 ? sum : tailCall(fib, n - 1, sum + prev, sum);
+      return n > 0 ? tailCall(fib, n - 1, sum + prev, sum) : sum;
     }
     const trFib = trampoline(fib);
     fibs = [];
-    expect(trFib(2)).toBe(1);
-    console.log(fibs.join(' '));
-    fibs = [];
-    expect(trFib(4)).toBe(3);
-    console.log(fibs.join(' '));
-    fibs = [];
     expect(trFib(10)).toBe(55);
-    console.log(fibs.join(' '));
+    expect(fibs).toEqual([0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]);
   });
 });

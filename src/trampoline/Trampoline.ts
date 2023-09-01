@@ -1,4 +1,4 @@
-const tailCallFlag = Symbol('trampoline:tailCall');
+const tailCallFlag = Symbol.for('@tkustov/sturdy-guide:trampoline:tailCall');
 
 export type TailCall<T> = {
   (): T | TailCall<T>;

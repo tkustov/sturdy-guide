@@ -9,11 +9,13 @@ class MappingError extends Error {
 export class Result<OkValue, ErrValue> {
   public static MappingError = MappingError;
 
-  public static ok<OkValue, ErrValue>(value: OkValue): Result<OkValue, ErrValue> {
+  public static ok<OkValue, ErrValue>(value: OkValue | Result<OkValue, ErrValue>): Result<OkValue, ErrValue> {
+    if (value instanceof Result) return value;
     return new Ok<OkValue, ErrValue>(value);
   }
 
-  public static err<ErrValue, OkValue = any>(error: ErrValue): Result<OkValue, ErrValue> {
+  public static err<ErrValue, OkValue = any>(error: ErrValue | Result<OkValue, ErrValue>): Result<OkValue, ErrValue> {
+    if (error instanceof Result) return error;
     return new Err<ErrValue, OkValue>(error);
   }
 

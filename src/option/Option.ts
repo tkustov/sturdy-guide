@@ -1,7 +1,8 @@
 import { NoImplError } from '../intrinsic/NoImplError.js';
 
 export class Option<Value> {
-  static some<SomeValue>(value: SomeValue): Option<SomeValue> {
+  static some<SomeValue>(value: SomeValue | Option<SomeValue>): Option<SomeValue> {
+    if (value instanceof Option) return value;
     return new Some<SomeValue>(value);
   }
 

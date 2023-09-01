@@ -44,16 +44,14 @@ export class ParseError extends Error {
   }
 }
 
-export class ParseResult {
-  static Some<T extends Token>(token: T): ParserOutput {
-    return Result.ok(Option.some(token));
-  }
+export function Some<T extends Token>(token: T): ParserOutput {
+  return Result.ok(Option.some(token));
+}
 
-  static None(): ParserOutput {
-    return Result.ok(Option.none());
-  }
+export function None(): ParserOutput {
+  return Result.ok(Option.none());
+}
 
-  static Err(error: ParseError): ParserOutput {
-    return Result.err(error);
-  }
+export function Err(error: ParseError): ParserOutput {
+  return Result.err(error);
 }
