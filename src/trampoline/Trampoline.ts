@@ -5,17 +5,20 @@ export type TailCall<T> = {
   [tailCallFlag]: true;
 };
 
-export function tailCall<R, A extends any[]>(
+export function tc<R, A extends any[]>(
   fn: (...args: A) => R | TailCall<R>,
   ...args: A
 ): TailCall<R> {
+  if (isTailCall(fn)) {
+    return fn;
+  };
   let call = <TailCall<R>>(() => fn(...args));
   call[tailCallFlag] = true;
   return call;
 }
 
-export function trampoline<P extends any[], R>(fn: (...args: P) => R | TailCall<R>): (...args: P) => R {
-  return (...args: P) => {
+export function trampoline<P extends any[], R>(fn: (...args: [...P]) => R | TailCall<R>): (...args: [...P]) => R {
+  return (...args: [...P]) => {
     let current = fn(...args);
     while (isTailCall(current)) {
       current = current();
